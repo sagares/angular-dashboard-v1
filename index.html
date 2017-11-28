@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html ng-app="dashboard" style="overflow: hidden;"
+	ng-controller="dashboardCtrl">
+<head>
+<meta charset="ISO-8859-1">
+<title>Dashboard</title>
+<style type="text/css">
+.ng-animate.item:not (.left ):not (.right ){
+	-webkit-transition: 0s ease-in-out left;
+	transition: 0s ease-in-out left
+}
+</style>
+<style type="text/css">
+[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide
+:not (.ng-hide-animate ){
+	display: none !important;
+}
+
+ng\:form {
+	display: block;
+}
+</style>
+
+<link rel="stylesheet" href="resources/css/bootstrap.min.css">
+<link rel="stylesheet" href="resources/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="resources/css/loading-bar.css">
+<link rel="stylesheet" href="resources/css/angular-growl.min.css">
+<link rel="stylesheet" href="resources/css/animate.min.css">
+<link href="resources/css/material-design-iconic-font.min.css"
+	rel="stylesheet" />
+<link href="resources/css/angular-chart.min.css"
+	rel="stylesheet" />
+<link rel="stylesheet" href="resources/css/styles.css">
+<script type="text/javascript" src="resources/js/jquery.min.js"></script>
+<script type="text/javascript" src="resources/js/angular/angular.min.js"></script>
+<script type="text/javascript"
+	src="resources/js/angular/ui-bootstrap-tpls-0.11.2.min.js"></script>
+<script type="text/javascript"
+	src="resources/js/angular/angular-animate.min.js"></script>
+<script type="text/javascript"
+	src="resources/js/angular/angular-route.min.js"></script>
+<script type="text/javascript"
+	src="resources/js/angular/angular-growl.min.js"></script>
+<script type="text/javascript" src="resources/js/angular/loading-bar.js"></script>
+<script type="text/javascript"
+	src="resources/js/angular/angular-resource.min.js"></script>
+<script type="text/javascript" src="resources/js/chart.js"></script>
+<script type="text/javascript"
+	src="resources/js/angular/angular-chart.min.js"></script>
+<script type="text/javascript"
+	src="resources/js/angular/controllers/app.js"></script>
+<script type="text/javascript"
+	src="resources/js/angular/controllers/controller.js"></script>
+</head>
+<body
+	ng-class="{ 'sw-toggled': layoutType === '1', 'modal-open': sidebarToggle.left === true }">
+
+	<header id="header" ng-controller="headerCtrl"
+		ng-include="'template/header.html'"> </header>
+	<section id="main">
+		<aside id="sidebar" ng-class="{ 'toggled': sidebarToggle.left === true }" ng-include="'template/sidebar-left.html'">
+		</aside>
+		<section id="content">
+			<div class="container">
+				<div class="block-header">
+					<h2>Dashboard</h2>
+					<ul class="actions">
+						<li><a href=""> <i class="zmdi zmdi-trending-up"></i>
+						</a></li>
+						<li><a href=""> <i class="zmdi zmdi-check-all"></i>
+						</a></li>
+						<li class="dropdown"><a dropdown-toggle=""
+							href="" aria-haspopup="true" aria-expanded="true"> <i
+								class="zmdi zmdi-more-vert"></i>
+						</a>
+							<ul class="dropdown-menu dropdown-menu-right">
+								<li><a href="">Refresh</a></li>
+								<li><a href="">Manage Widgets</a></li>
+								<li><a href="">Widgets Settings</a></li>
+							</ul></li>
+					</ul>
+				</div>
+				<div class="card" ng-controller="lineChartCtrl">
+					<div class="card-header">
+						<h2>
+							Sales Statistics <small>Vestibulum purus quam
+								scelerisque, mollis nonummy metus</small>
+						</h2>
+						<ul class="actions">
+							<li><a href=""> <i class="zmdi zmdi-refresh-alt"></i>
+							</a></li>
+							<li><a href=""> <i class="zmdi zmdi-download"></i>
+							</a></li>
+							<li class="dropdown">
+								<a dropdown-toggle href="" aria-haspopup="true"
+								aria-expanded="false"> <i class="zmdi zmdi-more-vert"></i>
+								</a>
+								<ul class="dropdown-menu dropdown-menu-right">
+									<li><a href="">Change Date Range</a></li>
+									<li><a href="">Change Graph Type</a></li>
+									<li><a href="">Other Settings</a></li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+					<div class="card-body row">
+						<div class="col-sm-12 col-md-12">
+							<canvas id="lineChart" class="chart chart-line" chart-data="data"
+								chart-labels="labels" chart-legend="true" chart-series="series"
+								chart-colours="colors" chart-click="onClick"></canvas>
+						</div>
+					</div>
+				</div>
+				<div class="card" ng-controller="lineChartCtrl">
+					<div class="card-header">
+						<h2>
+							Sales Statistics <small>Vestibulum purus quam
+								scelerisque, mollis nonummy metus</small>
+						</h2>
+						<ul class="actions">
+							<li><a href=""> <i class="zmdi zmdi-refresh-alt"></i>
+							</a></li>
+							<li><a href=""> <i class="zmdi zmdi-download"></i>
+							</a></li>
+							<li class="dropdown">
+								<a dropdown-toggle href="" aria-haspopup="true"
+								aria-expanded="false"> <i class="zmdi zmdi-more-vert"></i>
+								</a>
+								<ul class="dropdown-menu dropdown-menu-right">
+									<li><a href="">Change Date Range</a></li>
+									<li><a href="">Change Graph Type</a></li>
+									<li><a href="">Other Settings</a></li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+					<div class="card-body row">
+						<div class="col-sm-12 col-md-12">
+							<canvas id="lineChart1" class="chart chart-line" chart-data="data"
+								chart-labels="labels" chart-legend="true" chart-series="series"
+								chart-colours="colors" chart-click="onClick"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</section>
+	<footer></footer>
+
+
+	<script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
+	<script type="text/javascript"
+		src="resources/js/jquery-nicescroll.min.js"></script>
+	<script type="text/javascript" src="resources/js/angular/controllers/ui.js"></script>
+	<script type="text/javascript" src="resources/js/angular/controllers/template.js"></script>
+	<div id="ascrail2000" class="nicescroll-rails nicescroll-rails-vr"
+		style="z-index: auto; cursor: default; position: fixed; top: 0px; height: 100%; right: 0px; opacity: 1; display: block; width: 5px;">
+		<div class="nicescroll-cursors"
+			style="position: relative; top: 0px; float: right; width: 5px; height: 45px; background-color: rgba(0, 0, 0, 0.3); border: 0px none; background-clip: padding-box; border-radius: 0px;"></div>
+	</div>
+	<div id="ascrail2000-hr" class="nicescroll-rails nicescroll-rails-hr"
+		style="height: 5px; z-index: auto; position: fixed; left: 0px; width: 100%; bottom: 0px; opacity: 1; cursor: default; display: none;">
+		<div>
+			<div class="flot-tooltip"
+				style="top: 1406px; left: 640px; display: none;">Items of
+				93.00 = 46.94</div>
+</body>
+</html>
